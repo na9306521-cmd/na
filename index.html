@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PremiumContent 18+</title>
+<link href="https://fonts.googleapis.com/css2?family=Suwannaphum:wght@300;400;700&family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+
+<!-- AGE GATE -->
+<div id="age-gate">
+  <div class="age-gate-bg"></div>
+  <div class="age-gate-grid"></div>
+  <div class="age-gate-box">
+    <div class="age-icon">🔞</div>
+    <h1>ចូលមើលអ្នក 18+ ប៉ុណ្ណោះ</h1>
+    <p>គេហទំព័រនេះមានមាតិកាសម្រាប់ អ្នកដែលមានអាយុ 18 ឆ្នាំ ឬចាស់ជាងនេះ។<br>តើអ្នកមានអាយុ 18+ ដែរឬទេ?</p>
+    <div class="age-btns">
+      <button class="btn btn-yes" onclick="enterSite()">✓ បាទ / ចា៎ ខ្ញុំ 18+</button>
+      <button class="btn btn-no" onclick="alert('សូមអភ័យទោស អ្នកមិនអាចចូលបាន')">✗ ទេ</button>
+    </div>
+    <p class="age-note">ដោយការចូល អ្នកបញ្ជាក់ថាមានអាយុ 18+ ហើយយល់ព្រមតាមលក្ខខណ្ឌប្រើប្រាស់</p>
+  </div>
+</div>
+
+<!-- MAIN SITE -->
+<div id="main-site" class="hidden">
+  <nav>
+    <span class="nav-logo">⬡ PremiumHub</span>
+    <span class="badge-18">18+</span>
+    <div class="spacer"></div>
+    <div class="nav-links">
+      <button class="nav-link active" onclick="showPage('home', this)">🏠 ទំព័រដើម</button>
+      <button class="nav-link" onclick="showPage('categories', this)">☰ ប្រភេទ</button>
+      <button class="nav-link" onclick="showPage('vip', this)">👑 VIP</button>
+      <button class="nav-link" onclick="showPage('admin', this)">⚙ Admin</button>
+    </div>
+    <div class="nav-user">
+      <div class="avatar">A</div>
+      <span>Admin</span>
+    </div>
+  </nav>
+
+  <!-- HOME PAGE -->
+  <div id="page-home" class="page">
+    <div class="hero">
+      <div class="hero-text">
+        <h2>ស្វាគមន៍មកកាន់ PremiumHub</h2>
+        <p>ទទួលបានការចូលប្រើប្រាស់មាតិកាផ្តាច់មុខ HD ដែលអាប់ដេតជារៀងរាល់ថ្ងៃ<br>ចុះឈ្មោះ VIP ដើម្បីទទួលបានអ្វីៗទាំងអស់</p>
+        <button class="hero-btn" onclick="openPaymentModal()">👑 ក្លាយជា VIP ថ្ងៃនេះ</button>
+
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card accent"><div class="stat-val">12,480</div><div class="stat-lbl">ចំនួនអ្នកចូលមើល</div></div>
+      <div class="stat-card"><div class="stat-val">348</div><div class="stat-lbl">មាតិកាសរុប</div></div>
+      <div class="stat-card gold"><div class="stat-val">1,290</div><div class="stat-lbl">សមាជិក VIP</div></div>
+      <div class="stat-card green"><div class="stat-val">$840</div><div class="stat-lbl">ចំណូលថ្ងៃនេះ</div></div>
+    </div>
+
+    <div class="section-title">មាតិកាថ្មីៗ</div>
+    <div class="content-grid" id="content-grid"></div>
+  </div>
+
+  <!-- CATEGORIES PAGE -->
+  <div id="page-categories" class="page hidden">
+    <div class="section-title" style="margin-bottom:20px">ប្រភេទមាតិកា</div>
+    <div class="cat-grid">
+
+      <div class="cat-card"><div class="cat-icon">🎬</div><div class="cat-name">វីដេអូ</div><div class="cat-count">1,240 ឯកសារ</div></div>
+      <div class="cat-card"><div class="cat-icon">📸</div><div class="cat-name">រូបភាព</div><div class="cat-count">3,580 ឯកសារ</div></div>
+      <div class="cat-card"><div class="cat-icon">👑</div><div class="cat-name">VIP តែប៉ុណ្ណោះ</div><div class="cat-count">890 ឯកសារ</div></div>
+      <div class="cat-card"><div class="cat-icon">🔴</div><div class="cat-name">ផ្សាយផ្ទាល់</div><div class="cat-count">ដំណើរការ 12</div></div>
+      <div class="cat-card"><div class="cat-icon">🎵</div><div class="cat-name">Audio</div><div class="cat-count">450 ឯកសារ</div></div>
+      <div class="cat-card"><div class="cat-icon">📖</div><div class="cat-name">Story</div><div class="cat-count">180 ឯកសារ</div></div>
+    </div>
+  </div>
+
+  <!-- VIP PAGE -->
+  <div id="page-vip" class="page hidden">
+    <div class="vip-hero">
+      <div style="font-size:40px;margin-bottom:16px">👑</div>
+      <h2>PremiumHub VIP Membership</h2>
+      <p>ទទួលបានការចូលប្រើប្រាស់ពេញលេញ រួមទាំងមាតិកាផ្តាច់មុខ 4K HD<br>ទាញយកគ្មានដែនកំណត់ ហើយគ្មានការផ្សាយពាណិជ្ជកម្ម</p>
+      <button class="btn-gold" onclick="openPaymentModal()">ចុះឈ្មោះ VIP — $9.99/ខែ</button>
+    </div>
+    <div class="vip-features">
+      <div class="vip-feat"><span class="feat-icon">✓</span><span class="feat-text">មាតិកា 4K Ultra HD</span></div>
+      <div class="vip-feat"><span class="feat-icon">✓</span><span class="feat-text">ទាញយកគ្មានដែនកំណត់</span></div>
+      <div class="vip-feat"><span class="feat-icon">✓</span><span class="feat-text">គ្មានការផ្សាយពាណិជ្ជកម្ម</span></div>
+      <div class="vip-feat"><span class="feat-icon">✓</span><span class="feat-text">ចូលប្រើ VIP Live Stream</span></div>
+      <div class="vip-feat"><span class="feat-icon">✓</span><span class="feat-text">មាតិកាថ្មីមុនអ្នកដទៃ</span></div>
+      <div class="vip-feat"><span class="feat-icon">✓</span><span class="feat-text">ជំនួយ 24/7 Priority</span></div>
+    </div>
+  </div>
+
+  <!-- ADMIN PAGE -->
+  <div id="page-admin" class="page hidden">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+      <span style="background:rgba(201,49,90,0.15);color:var(--accent2);font-size:11px;padding:5px 12px;border-radius:6px;font-weight:600">⚠ ADMIN PANEL</span>
+      <h2 style="font-size:18px;font-weight:600">គ្រប់គ្រងគេហទំព័រ</h2>
+    </div>
+    <div class="admin-layout">
+      <div class="admin-sidebar">
+        <div class="sidebar-label">ម៉ឺនុយ</div>
+        <button class="sidebar-link active" onclick="showAdmin('dashboard',this)">📊 Dashboard</button>
+        <button class="sidebar-link" onclick="showAdmin('content',this)">🎬 គ្រប់គ្រងមាតិកា</button>
+        <button class="sidebar-link" onclick="showAdmin('users',this)">👥 សមាជិក</button>
+        <button class="sidebar-link" onclick="showAdmin('payments',this)">💳 ការទូទាត់</button>
+        <button class="sidebar-link" onclick="showAdmin('upload',this)">⬆ Upload មាតិកា</button>
+        <button class="sidebar-link" onclick="showAdmin('settings',this)">⚙ ការកំណត់</button>
+      </div>
+      <div>
+        <!-- DASHBOARD -->
+        <div id="adm-dashboard" class="admin-panel">
+          <div class="admin-top"><h3>📊 Dashboard Overview</h3></div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px">
+            <div style="background:var(--bg3);border-radius:var(--radius);padding:16px">
+              <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-family:'Suwannaphum',sans-serif">អ្នកប្រើប្រាស់ថ្មី (ថ្ងៃនេះ)</div>
+              <div style="font-size:24px;font-weight:700;color:var(--purple2)">+47</div>
+            </div>
+            <div style="background:var(--bg3);border-radius:var(--radius);padding:16px">
+              <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-family:'Suwannaphum',sans-serif">ចំណូលថ្ងៃនេះ</div>
+              <div style="font-size:24px;font-weight:700;color:#4ec994">$840</div>
+            </div>
+            <div style="background:var(--bg3);border-radius:var(--radius);padding:16px">
+              <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-family:'Suwannaphum',sans-serif">ការតវ៉ា</div>
+              <div style="font-size:24px;font-weight:700;color:var(--accent2)">3</div>
+            </div>
+          </div>
+          <div style="font-size:13px;font-weight:600;color:var(--text2);margin-bottom:12px;letter-spacing:.5px">សកម្មភាពថ្មីៗ</div>
+          <div id="activity-log"></div>
+        </div>
+
+        <!-- CONTENT MANAGER -->
+        <div id="adm-content" class="admin-panel hidden">
+          <div class="admin-top">
+            <h3>🎬 គ្រប់គ្រងមាតិកា</h3>
+            <button class="btn-save" style="font-size:12px;padding:8px 18px" onclick="toast('+ បន្ថែមមាតិកាថ្មី — Form Popup!')">+ បន្ថែមមាតិកា</button>
+          </div>
+          <div id="content-table"></div>
+        </div>
+
+        <!-- USERS -->
+        <div id="adm-users" class="admin-panel hidden">
+          <div class="admin-top">
+            <h3>👥 សមាជិក</h3>
+            <input class="search-bar" type="text" placeholder="🔍 ស្វែងរក...">
+          </div>
+          <div id="user-table"></div>
+        </div>
+
+        <!-- PAYMENTS -->
+        <div id="adm-payments" class="admin-panel hidden">
+          <div class="admin-top"><h3>💳 ប្រវត្តិការទូទាត់</h3></div>
+          <div id="payment-table"></div>
+        </div>
+
+        <!-- UPLOAD -->
+        <div id="adm-upload" class="admin-panel hidden">
+          <div class="admin-top"><h3>⬆ Upload មាតិកា</h3></div>
+          <div style="border:2px dashed var(--border2);border-radius:var(--radius-lg);padding:48px;text-align:center;margin-bottom:20px;cursor:pointer" onclick="toast('📂 Open File Browser...')">
+            <div style="font-size:40px;margin-bottom:12px">📁</div>
+
+            <p style="color:var(--text2);font-size:14px;margin-bottom:6px">ចុចដើម្បីជ្រើសឯកសារ</p>
+            <p style="color:var(--text3);font-size:12px;font-family:'Suwannaphum',sans-serif">រំDrag & Drop ឯកសារ MP4, MKV, JPG, PNG (Max 2GB)</p>
+            <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);text-align:left">
+              <div style="font-size:12px;color:var(--text2);margin-bottom:10px;font-weight:500">🎬 វីដេអូដែលលុបចោល៖</div>
+              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px">
+                <li style="background:rgba(255,255,255,0.03);padding:10px;border-radius:6px;font-size:12px;color:var(--text3);display:flex;align-items:center;gap:8px">
+                  <span>▶</span> video_001_4k.mp4 (2.3 GB)
+                </li>
+                <li style="background:rgba(255,255,255,0.03);padding:10px;border-radius:6px;font-size:12px;color:var(--text3);display:flex;align-items:center;gap:8px">
+                  <span>▶</span> premium_hd_720p.mkv (1.5 GB)
+                </li>
+                <li style="background:rgba(255,255,255,0.03);padding:10px;border-radius:6px;font-size:12px;color:var(--text3);display:flex;align-items:center;gap:8px">
+                  <span>▶</span> exclusive_content.mp4 (3.1 GB)
+                </li>
+                <li style="background:rgba(255,255,255,0.03);padding:10px;border-radius:6px;font-size:12px;color:var(--text3);display:flex;align-items:center;gap:8px">
+                  <span>▶</span> vip_series_ep4.mp4 (2.8 GB)
+                </li>
+                <li style="background:rgba(255,255,255,0.03);padding:10px;border-radius:6px;font-size:12px;color:var(--text3);display:flex;align-items:center;gap:8px">
+                  <span>▶</span> ultra_collection_2025.mkv (2.2 GB)
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">ចំណងជើងមាតិកា</label>
+            <input class="form-input" type="text" placeholder="ដាក់ចំណងជើង...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">ប្រភេទ</label>
+            <select class="form-input">
+              <option>🎬 វីដេអូ</option>
+              <option>📸 រូបភាព</option>
+              <option>🔴 ផ្សាយផ្ទាល់</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-check">
+              <input type="checkbox"> ផ្តាច់មុខ VIP
+            </label>
+          </div>
+          <button class="btn-save" onclick="toast('✓ Upload ដោយជោគជ័យ!')">⬆ Upload ឥឡូវ</button>
+          
+          <div style="margin-top:32px;border-top:1px solid var(--border);padding-top:20px">
+            <div style="font-size:13px;font-weight:600;color:var(--text2);margin-bottom:12px;letter-spacing:.5px">បង្រុមឯកសារដែលបានផ្ទុកឡើង</div>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px">
+              <li style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:14px;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <span style="display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500"><span>🎬</span> Premium Collection Vol.1</span>
+                  <span style="background:rgba(201,49,90,0.15);color:var(--accent2);font-size:10px;padding:3px 8px;border-radius:4px">ថ្មី</span>
+                </div>
+                <div style="display:flex;gap:16px;font-size:11px;color:var(--text3)">
+                  <span>📏 2.1 GB</span>
+                  <span>⏱ 45 នាទី</span>
+                  <span>🎬 4K Ultra HD</span>
+                  <span>📅 2026-05-14</span>
+                </div>
+              </li>
+              <li style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:14px;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <span style="display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500"><span>🎬</span> VIP Series Episode 3</span>
+                  <span style="background:rgba(212,168,67,0.15);color:var(--gold);font-size:10px;padding:3px 8px;border-radius:4px">👑 VIP</span>
+                </div>
+                <div style="display:flex;gap:16px;font-size:11px;color:var(--text3)">
+                  <span>📏 1.8 GB</span>
+                  <span>⏱ 38 នាទី</span>
+                  <span>🎬 Full HD</span>
+                  <span>📅 2026-05-12</span>
+                </div>
+              </li>
+              <li style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:14px;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <span style="display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500"><span>🔴</span> Live Show Replay HD</span>
+                  <span style="background:rgba(201,49,90,0.15);color:var(--accent2);font-size:10px;padding:3px 8px;border-radius:4px">🔥 Hot</span>
+                </div>
+                <div style="display:flex;gap:16px;font-size:11px;color:var(--text3)">
+                  <span>📏 3.2 GB</span>
+                  <span>⏱ 52 នាទី</span>
+                  <span>🎬 HD 720p</span>
+                  <span>📅 2026-05-11</span>
+                </div>
+              </li>
+              <li style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:14px;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <span style="display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500"><span>🎬</span> Night Edition Vol.2</span>
+                  <span style="background:rgba(212,168,67,0.15);color:var(--gold);font-size:10px;padding:3px 8px;border-radius:4px">👑 VIP</span>
+                </div>
+                <div style="display:flex;gap:16px;font-size:11px;color:var(--text3)">
+                  <span>📏 2.5 GB</span>
+                  <span>⏱ 41 នាទី</span>
+                  <span>🎬 4K Ultra HD</span>
+                  <span>📅 2026-05-10</span>
+                </div>
+              </li>
+              <li style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:14px;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <span style="display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500"><span>🎬</span> Exclusive Raw Collection</span>
+                  <span style="background:rgba(201,49,90,0.15);color:var(--accent2);font-size:10px;padding:3px 8px;border-radius:4px">ថ្មី</span>
+                </div>
+                <div style="display:flex;gap:16px;font-size:11px;color:var(--text3)">
+                  <span>📏 2.8 GB</span>
+                  <span>⏱ 48 នាទី</span>
+                  <span>🎬 4K Ultra HD</span>
+                  <span>📅 2026-05-09</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- SETTINGS -->
+        <div id="adm-settings" class="admin-panel hidden">
+          <div class="admin-top"><h3>⚙ ការកំណត់</h3></div>
+          <div style="max-width:480px">
+            <div class="form-group">
+              <label class="form-label">ឈ្មោះគេហទំព័រ</label>
+              <input class="form-input" type="text" value="PremiumHub 18+">
+            </div>
+            <div class="form-group">
+              <label class="form-label">ការផ្ទៀងផ្ទាត់អាយុ</label>
+              <select class="form-input">
+                <option>Popup Confirmation (default)</option>
+                <option>ផ្ទៀងផ្ទាត់ ID Card</option>
+                <option>OTP SMS Verify</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">តម្លៃ VIP ($/ខែ)</label>
+              <input class="form-input" type="number" value="9.99">
+            </div>
+            <div class="form-group" style="display:flex;flex-direction:column;gap:10px">
+              <label class="form-check"><input type="checkbox" checked> បន្ថែម Watermark</label>
+              <label class="form-check"><input type="checkbox" checked> ការពាររំលង RClick</label>
+              <label class="form-check"><input type="checkbox"> ប្រើប្រាស់ HTTPS</label>
+            </div>
+            <button class="btn-save" onclick="toast('✓ រក្សាទុកការកំណត់ដោយជោគជ័យ!')">💾 រក្សាទុក</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- PAYMENT MODAL -->
+<div id="payment-modal" class="payment-modal hidden">
+  <div class="payment-modal-bg" onclick="closePaymentModal()"></div>
+  <div class="payment-modal-content">
+    <div class="payment-header">
+      <h2>👑 ចូលជា VIP Member</h2>
+      <button class="payment-close" onclick="closePaymentModal()">✕</button>
+    </div>
+    
+    <div class="payment-body">
+      <div class="payment-plan">
+        <div class="plan-title">PremiumHub VIP</div>
+        <div class="plan-price">$9.99<span>/ខែ</span></div>
+        <div class="plan-features">
+          <div class="plan-feat">✓ មាតិកា 4K Ultra HD</div>
+          <div class="plan-feat">✓ ទាញយកគ្មានដែនកំណត់</div>
+          <div class="plan-feat">✓ គ្មានការផ្សាយពាណិជ្ជកម្ម</div>
+          <div class="plan-feat">✓ ឈប់សរុប រូបភាព</div>
+        </div>
+      </div>
+
+      <form id="payment-form">
+        <div class="form-group">
+          <label class="form-label">ឈ្មោះពេញលេញ</label>
+          <input class="form-input" type="text" id="cardholder-name" placeholder="ឈ្មោះរបស់អ្នក" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">អ៉ីមែលលិខិត</label>
+          <input class="form-input" type="email" id="cardholder-email" placeholder="email@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ព័ត៌មានលម្អិតអាពាហ៍ពិពាហ៍</label>
+          <div id="card-element" class="card-element"></div>
+        </div>
+
+        <div id="card-errors" class="card-errors"></div>
+
+        <label class="form-check">
+          <input type="checkbox" id="agree-terms" required> ខ្ញុំយល់ព្រម និងលក្ខខណ្ឌលម្អិត
+        </label>
+
+        <button type="submit" class="btn-save" style="width:100%; margin-top:20px">
+          💳 ធានាថ្លៃលើការលក់ $9.99
+        </button>
+      </form>
+
+      <div class="payment-security">
+        🔒 ការបង់ប្រាក់សុវត្ថិម្នាក់ដោយ Stripe
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
